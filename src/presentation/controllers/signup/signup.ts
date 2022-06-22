@@ -1,11 +1,11 @@
 import { MissingParamError, InvalidParamError } from '@/presentation/errors'
 import { badRequest, serverError } from '@/presentation/helpers/httpRelper'
-import { Controller, EmailValidator, HttpRequest, HttpResponse } from '@/presentation/protocolos'
-import { AddAccount } from '../../domain/usecases/add-account'
+import { Controller, HttpRequest, HttpResponse, AddAccount, EmailValidator } from './signup-protocols'
 
 export class SignUpController implements Controller {
   private readonly emailValidator: EmailValidator
   private readonly addAccount: AddAccount
+
   constructor (emailValidator: EmailValidator, addAccount: AddAccount) {
     this.emailValidator = emailValidator
     this.addAccount = addAccount
