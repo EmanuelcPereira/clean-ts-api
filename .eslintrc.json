@@ -26,6 +26,7 @@
      "no-restricted-syntax": "off",
      "@typescript-eslint/no-use-before-define": "off",
      "camelcase": 0,
+     "consistent-return": "off",
      "max-classes-per-file": "off",
      "@typescript-eslint/no-explicit-any": "off",
      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
