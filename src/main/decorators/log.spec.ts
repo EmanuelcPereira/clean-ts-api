@@ -6,7 +6,7 @@ import { LogControllerDecorator } from './log'
 
 const makeController = (): Controller => {
   class ControllerStub implements Controller {
-    async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
+    async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
       return Promise.resolve(ok(makeFakeAccount()))
     }
   }
@@ -15,7 +15,7 @@ const makeController = (): Controller => {
 
 const makeLogErrorRepository = (): LogErrorRepository => {
   class LogErrorRepositoryStub implements LogErrorRepository {
-    async logError (stack: string): Promise<void> {
+    async logError(stack: string): Promise<void> {
       return Promise.resolve()
     }
   }
@@ -27,15 +27,15 @@ const makeFakeRequest = (): HttpRequest => ({
     name: 'any_name',
     email: 'any_email@mail.com',
     password: 'any_password',
-    passwordConfirmation: 'any_password'
-  }
+    passwordConfirmation: 'any_password',
+  },
 })
 
 const makeFakeAccount = (): AccountModel => ({
   id: 'valid_id',
   name: 'valid_name',
   email: 'valid_email@mail.com',
-  password: 'valid_password'
+  password: 'valid_password',
 })
 
 const makeFakeServerError = (): HttpResponse => {
@@ -58,7 +58,7 @@ const makeSut = (): SutTypes => {
   return {
     sut,
     controllerStub,
-    logErrorRepositoryStub
+    logErrorRepositoryStub,
   }
 }
 
@@ -83,7 +83,9 @@ describe('LogController', () => {
   test('should call LogErrorRepository with correct error if controller returns a server error', async () => {
     const { sut, controllerStub, logErrorRepositoryStub } = makeSut()
     const logSpy = jest.spyOn(logErrorRepositoryStub, 'logError')
-    jest.spyOn(controllerStub, 'handle').mockReturnValueOnce(Promise.resolve(makeFakeServerError()))
+    jest
+      .spyOn(controllerStub, 'handle')
+      .mockReturnValueOnce(Promise.resolve(makeFakeServerError()))
     const httpRequest = makeFakeRequest()
     await sut.handle(httpRequest)
 
