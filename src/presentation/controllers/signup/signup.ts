@@ -1,4 +1,4 @@
-import { badRequest, serverError, ok } from '@/presentation/helpers/httpHelper'
+import { badRequest, serverError, ok } from '@/presentation/helpers/http/httpHelper'
 import { Validation } from '../../helpers/validator/validation'
 import {
   Controller,
