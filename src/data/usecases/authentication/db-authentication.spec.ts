@@ -1,5 +1,5 @@
 import { AccountModel } from '../add-account/db-add-accout-protocols'
-import { LoadAccountByEmailRepository } from '../../protocols/loadAccountByEmailRepository'
+import { LoadAccountByEmailRepository } from '../../protocols/db/loadAccountByEmailRepository'
 import { DbAuthentication } from './db-authentication'
 
 const makeFakeAuthentication = () => ({
