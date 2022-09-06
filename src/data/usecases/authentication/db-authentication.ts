@@ -5,6 +5,7 @@ import {
   AuthenticationModel,
 } from '../../../domain/usecases/authentication'
 import { TokenGenerator } from '../../protocols/criptography/tokenGenerator'
+import { UpdateAccessTokenRepository } from '../../protocols/db/updateAccessTokenRepository'
 
 export class DbAuthentication implements Authentication {
   private readonly loadAccountByEmailRepository: LoadAccountByEmailRepository
@@ -13,14 +14,18 @@ export class DbAuthentication implements Authentication {
 
   private readonly tokenGenerator: TokenGenerator
 
+  private readonly updateAccessTokenRepository: UpdateAccessTokenRepository
+
   constructor(
     loadAccountByEmailRepository: LoadAccountByEmailRepository,
     hashComparer: HashComparer,
     tokenGenerator: TokenGenerator,
+    updateAccessTokenRepository: UpdateAccessTokenRepository,
   ) {
     this.loadAccountByEmailRepository = loadAccountByEmailRepository
     this.hashComparer = hashComparer
     this.tokenGenerator = tokenGenerator
+    this.updateAccessTokenRepository = updateAccessTokenRepository
   }
 
   async auth(authentication: AuthenticationModel): Promise<string> {
@@ -35,7 +40,7 @@ export class DbAuthentication implements Authentication {
       )
       if (isValid) {
         const accessToken = await this.tokenGenerator.generate(account.id)
-
+        await this.updateAccessTokenRepository.update(account.id, accessToken)
         return accessToken
       }
     }
