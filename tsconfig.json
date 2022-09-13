@@ -4,7 +4,6 @@
     "target": "es2022",
     "module": "ES2022",
     "esModuleInterop": true,
-    "allowJs": true,
     "rootDir": "src",
     "baseUrl": "src",
     "paths": {
@@ -13,5 +12,8 @@
     "moduleResolution": "node",
   },
   "include": ["src"],
-  "exclude": []
+  "exclude": [
+    "**/*.spect.ts",
+    "**/*.test.ts"
+  ]
 }
