@@ -1,8 +1,8 @@
 import { badRequest, ok, serverError } from '@/presentation/helpers/http/httpHelper'
 
-import { EmailInUseError } from '../../errors/email-in-use-error'
-import { forbidden } from '../../helpers/http/httpHelper'
-import { Validation } from '../../protocolos/validation'
+import { EmailInUseError } from '../../../errors/email-in-use-error'
+import { forbidden } from '../../../helpers/http/httpHelper'
+import { Validation } from '../../../protocolos/validation'
 import {
   AddAccount,
   Authentication,

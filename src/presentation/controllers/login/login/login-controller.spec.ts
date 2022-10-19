@@ -4,14 +4,14 @@ import {
   serverError,
   unauthorized,
   ok,
-} from '../../helpers/http/httpHelper'
-import { MissingParamError } from '../../errors'
+} from '@/presentation/helpers/http/httpHelper'
+import { MissingParamError } from '@/presentation/errors'
 import {
   Authentication,
   HttpRequest,
   Validation,
 } from './login-controller-protocols'
-import { AuthenticationModel } from '../../../domain/usecases/authentication'
+import { AuthenticationModel } from '@/domain/usecases/authentication'
 
 const makeValidation = (): Validation => {
   class ValidationStub implements Validation {

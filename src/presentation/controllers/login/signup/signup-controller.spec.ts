@@ -1,13 +1,13 @@
 import { MissingParamError, ServerError } from '@/presentation/errors'
 
-import { AuthenticationModel } from '../../../domain/usecases/authentication'
-import { EmailInUseError } from '../../errors/email-in-use-error'
+import { AuthenticationModel } from '../../../../domain/usecases/authentication'
+import { EmailInUseError } from '../../../errors/email-in-use-error'
 import {
   badRequest,
   forbidden,
   ok,
   serverError,
-} from '../../helpers/http/httpHelper'
+} from '../../../helpers/http/httpHelper'
 import { SignUpController } from './signup-controller'
 import {
   AccountModel,

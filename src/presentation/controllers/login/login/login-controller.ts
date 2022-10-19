@@ -1,9 +1,9 @@
 import {
   badRequest,
+  ok,
   serverError,
   unauthorized,
-  ok,
-} from '../../helpers/http/httpHelper'
+} from '@/presentation/helpers/http/httpHelper'
 import {
   Authentication,
   HttpRequest,
