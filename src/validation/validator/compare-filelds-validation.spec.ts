@@ -1,4 +1,4 @@
-import { CompareFieldsValidation } from '@/presentation/helpers/validator/compare-fields-validation'
+import { CompareFieldsValidation } from '@/validation/validator/compare-fields-validation'
 import { InvalidParamError } from '@/presentation/errors/invalid-param-error'
 
 const makeSut = (): CompareFieldsValidation => {
