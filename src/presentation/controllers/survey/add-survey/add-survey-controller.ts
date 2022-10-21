@@ -1,6 +1,9 @@
 import { AddSurvey } from '@/domain/usecases/add-survey'
-import { badRequest } from '@/presentation/helpers/http/httpHelper'
-import { serverError } from '../../../helpers/http/httpHelper'
+import {
+  serverError,
+  noContent,
+  badRequest,
+} from '@/presentation/helpers/http/httpHelper'
 import {
   Controller,
   HttpRequest,
@@ -23,7 +26,7 @@ export class AddSurveyController implements Controller {
       const { question, answers } = httpReqest.body
       await this.addSurvey.add({ question, answers })
 
-      return null
+      return noContent()
     } catch (error) {
       return serverError(error)
     }
