@@ -3,7 +3,7 @@ import { LoginController } from '@/presentation/controllers/login/login/login-co
 import { Controller } from '@/presentation/protocolos'
 
 import { makeLoginValidation } from './login-validation-factory'
-import { makeLogControllerDecorator } from '../../decorators/log-controller-decorator-factory'
+import { makeLogControllerDecorator } from '@/main/factories/decorators/log-controller-decorator-factory'
 
 export const makeLoginController = (): Controller => {
   return makeLogControllerDecorator(
