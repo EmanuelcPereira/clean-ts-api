@@ -6,12 +6,14 @@ import {
   AddAccountModel,
 } from '@/data/usecases/add-account/db-add-accout-protocols'
 import { MongoHelper } from '@/infra/db/mongodb/helpers/mongo-helper'
+import { LoadAccountByTokenRepository } from '../../../../data/protocols/db/account/loadAccountByTokenRepository'
 
 export class AccountMongoRepository
   implements
     AddAccountRepository,
     LoadAccountByEmailRepository,
-    UpdateAccessTokenRepository
+    UpdateAccessTokenRepository,
+    LoadAccountByTokenRepository
 {
   async add(accountData: AddAccountModel): Promise<AccountModel> {
     const accountCollection = await MongoHelper.getColletion('accounts')
@@ -43,5 +45,12 @@ export class AccountMongoRepository
         },
       },
     )
+  }
+
+  async loadByToken(token: string, role?: string): Promise<AccountModel> {
+    const accountCollection = await MongoHelper.getColletion('accounts')
+    const account = await accountCollection.findOne({ accessToken: token, role })
+
+    return account && MongoHelper.map(account)
   }
 }
