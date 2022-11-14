@@ -16,7 +16,7 @@ export class AccountMongoRepository
     LoadAccountByTokenRepository
 {
   async add(accountData: AddAccountModel): Promise<AccountModel> {
-    const accountCollection = await MongoHelper.getColletion('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
     const result = await accountCollection.insertOne(accountData)
     const foundedAccount = await accountCollection.findOne({
       _id: result.insertedId,
@@ -26,14 +26,14 @@ export class AccountMongoRepository
   }
 
   async loadByEmail(email: string): Promise<AccountModel> {
-    const accountCollection = await MongoHelper.getColletion('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
     const account = await accountCollection.findOne({ email })
 
     return account && MongoHelper.map(account)
   }
 
   async updateAccessToken(id: string, token: string): Promise<void> {
-    const accountCollection = await MongoHelper.getColletion('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
     const objectId = MongoHelper.parseToObjectId(id)
     await accountCollection.updateOne(
       {
@@ -48,7 +48,7 @@ export class AccountMongoRepository
   }
 
   async loadByToken(token: string, role?: string): Promise<AccountModel> {
-    const accountCollection = await MongoHelper.getColletion('accounts')
+    const accountCollection = await MongoHelper.getCollection('accounts')
     const account = await accountCollection.findOne({
       accessToken: token,
       $or: [
